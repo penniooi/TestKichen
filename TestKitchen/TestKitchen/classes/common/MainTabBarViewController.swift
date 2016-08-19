@@ -57,7 +57,7 @@ class MainTabBarViewController: UITabBarController {
             make.top.equalTo(self!.view.snp_bottom).offset(-49)
             self?.bgView?.layer.borderWidth = 2
             self?.bgView?.layer.borderColor = UIColor.grayColor().CGColor
-            self!.view.addSubview((self?.bgView!)!)
+            //self!.view.addSubview((self?.bgView!)!)
         })
         //循环添加按钮
         //按钮的宽度
@@ -99,7 +99,7 @@ class MainTabBarViewController: UITabBarController {
     
     func clickBtn(curBtn:UIButton){
         //1.取消之前的选中状态
-        let lastBtnView = self.view.viewWithTag(500+selectedIndex)
+        let lastBtnView = bgView!.viewWithTag(500+selectedIndex)
         if let tmpBtn = lastBtnView{
             let lastBtn = tmpBtn as! UIButton
             let lastLabelView = tmpBtn.viewWithTag(400)
