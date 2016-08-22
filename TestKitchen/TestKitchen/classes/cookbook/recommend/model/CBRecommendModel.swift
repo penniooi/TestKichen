@@ -47,8 +47,9 @@ class CBRecommendDataModel:NSObject{
             let bannerModel = CBRecommendBannerModel.parseModel(subjson)
             bArray.append(bannerModel)
             
-            model.banner = bArray
+        
         }
+            model.banner = bArray
         let listArray = jsonData["widgetList"]
         var lArray = Array<CBRecommendwidgetListModel>()
         for (_,subjson) in listArray{

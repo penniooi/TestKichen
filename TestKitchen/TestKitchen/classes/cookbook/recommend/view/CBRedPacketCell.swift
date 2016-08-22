@@ -25,6 +25,11 @@ class CBRedPacketCell: UITableViewCell {
     }
     
     func showData(){
+        //删除之前的子视图
+        for sub in scrollView.subviews{
+            sub.removeFromSuperview()
+            
+        }
         
         //1.容器视图
         let containeView = UIView.creatView()

@@ -23,7 +23,7 @@ class CBRecommendHeaderView: UIView {
         bgView.backgroundColor = UIColor.whiteColor()
         addSubview(bgView)
         //标题文字
-        let titleW:CGFloat = 100
+        let titleW:CGFloat = 160
         let imageW:CGFloat = 30
         let x = (bounds.size.width-titleW-imageW)/2
         title = UILabel.createLabel(nil, font: UIFont.systemFontOfSize(18), textAlignment: .Center, textColor: UIColor.blackColor())

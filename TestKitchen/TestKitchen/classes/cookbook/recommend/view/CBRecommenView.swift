@@ -85,6 +85,17 @@ extension CBRecommenView:UITableViewDelegate,UITableViewDataSource{
             }else if listmodel?.widget_type?.integerValue == widgetType.NewProduct.rawValue{
                 rowNum = 1
             
+            }else if listmodel?.widget_type?.integerValue == widgetType.Special.rawValue{
+                //早餐日记,健康100岁等
+                rowNum = 1
+            
+            }else if listmodel?.widget_type?.integerValue == widgetType.Secne.rawValue{
+                //全部场景
+                rowNum = 1
+            
+            }else if listmodel?.widget_type?.integerValue == widgetType.Talent.rawValue{
+            
+                rowNum = (listmodel?.widget_data?.count)!/4
             }
         
         
@@ -113,7 +124,13 @@ extension CBRecommenView:UITableViewDelegate,UITableViewDataSource{
             
                 height = 300
             
+            }else if  listmodel?.widget_type?.integerValue == widgetType.Special.rawValue{
+                height = 200
             
+            }else if listmodel?.widget_type?.integerValue == widgetType.Secne.rawValue{
+                height = 60
+            }else if listmodel?.widget_type?.integerValue == widgetType.Talent.rawValue{
+                height = 80
             }
         }
         
@@ -144,6 +161,19 @@ extension CBRecommenView:UITableViewDelegate,UITableViewDataSource{
             
                 cell = CBRecommendNewCell.creatNewCellForTabView(tableView, atIdexPath: indexPath, withListModel: listmodel!)
             
+            }else if listmodel?.widget_type?.integerValue == widgetType.Special.rawValue{
+            
+                cell = CBSpecialCell.creatSpecialCellFor(tableView, atIndexPath: indexPath, withListModel: listmodel!)
+            
+            }else if listmodel?.widget_type?.integerValue == widgetType.Secne.rawValue{
+            
+                cell = CBSceneCell.creatSceneCellFor(tableView, atIndexPath: indexPath, withListModel: listmodel!)
+            
+            
+            }else if listmodel?.widget_type?.integerValue == widgetType.Talent.rawValue{
+            
+                cell = CBTalentCell.creatCBTalentCellFor(tableView, atIndexPath: indexPath, withListModel: listmodel!)
+            
             }
             return cell
         
@@ -166,10 +196,18 @@ extension CBRecommenView:UITableViewDelegate,UITableViewDataSource{
             tmpView.configTitle(listmodel?.title)
             heightView = tmpView
             
+        }else if listmodel?.widget_type?.integerValue == widgetType.Special.rawValue{
+            let tmpView = CBRecommendHeaderView(frame: CGRectMake(0,0,kScreenWidth,44))
+            tmpView.configTitle(listmodel?.title)
+            heightView = tmpView
+        }else if listmodel?.widget_type?.integerValue == widgetType.Talent.rawValue{
+            let tmpView = CBRecommendHeaderView(frame: CGRectMake(0,0,kScreenWidth,44))
+            tmpView.configTitle(listmodel?.title)
+            heightView = tmpView
+            }
         }
-    }
         return heightView
-}
+    }
     
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         var height:CGFloat = 0
@@ -183,6 +221,11 @@ extension CBRecommenView:UITableViewDelegate,UITableViewDataSource{
             }else if listmodel?.widget_type?.integerValue == widgetType.NewProduct.rawValue{
                 height = 44
             
+            }else if  listmodel?.widget_type?.integerValue == widgetType.Special.rawValue{
+                height = 44
+            }else if listmodel?.widget_type?.integerValue == widgetType.Talent.rawValue{
+                //推荐达人
+                height = 44
             }
         
         }
