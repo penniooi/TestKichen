@@ -20,5 +20,6 @@ public enum widgetType:Int{
     case Special = 3 //早餐日记,健康100岁等
     case Secne = 9   //全部场景
     case Talent = 4 //推荐达人
-    //case Wokes =
+    case Wokes = 8  //精选作品
+    case subject = 7 //专题界面
 }

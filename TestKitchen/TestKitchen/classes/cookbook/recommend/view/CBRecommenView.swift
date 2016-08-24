@@ -96,9 +96,12 @@ extension CBRecommenView:UITableViewDelegate,UITableViewDataSource{
             }else if listmodel?.widget_type?.integerValue == widgetType.Talent.rawValue{
             
                 rowNum = (listmodel?.widget_data?.count)!/4
+            }else if listmodel?.widget_type?.integerValue == widgetType.Wokes.rawValue{
+                rowNum = 1
+                
+            }else if listmodel?.widget_type?.integerValue == widgetType.subject.rawValue{
+                rowNum = (listmodel?.widget_data?.count)!/3
             }
-        
-        
         }
         return rowNum
     }
@@ -131,6 +134,13 @@ extension CBRecommenView:UITableViewDelegate,UITableViewDataSource{
                 height = 60
             }else if listmodel?.widget_type?.integerValue == widgetType.Talent.rawValue{
                 height = 80
+            }else if listmodel?.widget_type?.integerValue == widgetType.Wokes.rawValue{
+                //精选作品
+                height = 240
+            
+            }else if listmodel?.widget_type?.integerValue == widgetType.subject.rawValue{
+                height = 180
+            
             }
         }
         
@@ -174,6 +184,13 @@ extension CBRecommenView:UITableViewDelegate,UITableViewDataSource{
             
                 cell = CBTalentCell.creatCBTalentCellFor(tableView, atIndexPath: indexPath, withListModel: listmodel!)
             
+            }else if listmodel?.widget_type?.integerValue == widgetType.Wokes.rawValue{
+            
+                cell = CBWorksCell.createCBWorksCellFor(tableView, atIndexPath: indexPath, withListModel: listmodel!)
+            }else if listmodel?.widget_type?.integerValue == widgetType.subject.rawValue{
+            
+                cell  = CBSubjectCell.createSubjectCellFor(tableView, atIndexPath: indexPath, withListModel: listmodel!)
+            
             }
             return cell
         
@@ -204,6 +221,17 @@ extension CBRecommenView:UITableViewDelegate,UITableViewDataSource{
             let tmpView = CBRecommendHeaderView(frame: CGRectMake(0,0,kScreenWidth,44))
             tmpView.configTitle(listmodel?.title)
             heightView = tmpView
+        }else if listmodel?.widget_type?.integerValue == widgetType.Wokes.rawValue{
+            //精选作品
+            let tmpView = CBRecommendHeaderView(frame: CGRectMake(0,0,kScreenWidth,44))
+            tmpView.configTitle(listmodel?.title)
+            heightView = tmpView
+        }else if listmodel?.widget_type?.integerValue == widgetType.subject.rawValue{
+            let tmpView = CBRecommendHeaderView(frame: CGRectMake(0,0,kScreenWidth,44))
+            tmpView.configTitle(listmodel?.title)
+            heightView = tmpView
+            
+            
             }
         }
         return heightView
@@ -226,11 +254,26 @@ extension CBRecommenView:UITableViewDelegate,UITableViewDataSource{
             }else if listmodel?.widget_type?.integerValue == widgetType.Talent.rawValue{
                 //推荐达人
                 height = 44
+            }else if  listmodel?.widget_type?.integerValue == widgetType.Wokes.rawValue{
+                height = 44
+            }else if listmodel?.widget_type?.integerValue == widgetType.subject.rawValue{
+                height = 44
+            
             }
         
         }
         return height
     }
-
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        let h:CGFloat = 44
+        if scrollView.contentOffset.y > h{
+            scrollView.contentInset = UIEdgeInsetsMake(-h, 0, 0, 0)
+        
+        }else if scrollView.contentOffset.y > 0{
+            scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0)
+        
+        }
+    }
 
 }
